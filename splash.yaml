@@ -1,0 +1,19 @@
+flutter_natice_splash:
+  color: "#FFFFFF"
+  color_dark: "#272727"
+  image: assets/logos/lightt.png
+  image_dark: assets/logos/darkk.png
+
+
+  android: true
+    # color: "#FFFFFF"
+    # color_dark: "#272727"
+    # image: assets/logos/lightt.png
+    # image_dark: assets/logos/darkk.png
+
+
+  web: true
+    # color: "#FFFFFF"
+    # color_dark: "#272727"
+    # image: assets/logos/lightt.png
+    # image_dark: assets/logos/darkk.png

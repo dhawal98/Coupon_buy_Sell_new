@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "368819860854",
+    "project_id": "ecouponplateform",
+    "storage_bucket": "ecouponplateform.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368819860854:android:03259bf4b28c023ed7b657",
+        "android_client_info": {
+          "package_name": "com.bsdhawal.coupon_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368819860854-73vs8ogajnpa860c60mjc0208clvundk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa_-mvFk2PmCzw2FL2Hhdovp_KIKamneI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368819860854-73vs8ogajnpa860c60mjc0208clvundk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

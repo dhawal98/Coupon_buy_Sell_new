@@ -1,0 +1,79 @@
+name: coupon_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+version: 1.0.0+1
+
+
+environment:
+  sdk: ^3.5.4
+
+#---packages----#
+dependencies:
+  flutter:
+    sdk: flutter
+  # utility package
+  http: ^1.1.0
+  intl: ^0.18.1
+  logger: ^2.0.1
+  url_launcher: ^6.1.12
+  flutter_native_splash: ^2.4.3
+  smooth_page_indicator: ^1.0.0
+  carousel_slider: ^5.0.0
+  # dependencies:
+  provider: ^6.0.5
+
+
+  #icons
+  iconsax: ^0.0.8
+  cupertino_icons: ^1.0.8
+
+  get: ^4.6.5
+  get_storage: ^2.1.1
+
+  # firebase
+  firebase_core: ^3.8.0
+  firebase_auth: ^5.3.3
+  cloud_firestore: ^5.5.0
+  # firebase_core: ^3.8.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+  flutter_lints: ^4.0.0
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    # - assets/icons/
+    # - assets/images/
+    # - assets/logos/
+    - assets/logos/lightt.png
+    - assets/logos/darkk.png
+    - assets/logos/gogl.png
+    - assets/logos/FB.png
+    - assets/images/on_boarding_images/
+    - assets/images/animations/
+    - assets/icons/categories/
+    - assets/images/banners/
+
+#  fonts:
+#    - family: Poppins
+#      fonts:
+#        - asset: assets/fonts/poppins-light.ttf
+#          weight: 300
+
+# flutter_native_splash:
+#   color: "#FFFFFF"
+#   color_dark: "#272727"
+#   image: assets/logos/lightt.png
+#   image_dark: assets/logos/darkk.png
+#   android: true
+#   ios: true
+#   web: true
