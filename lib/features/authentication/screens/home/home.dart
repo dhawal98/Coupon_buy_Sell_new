@@ -195,12 +195,7 @@ class CouponCard extends StatelessWidget {
                         color: Colors.green,
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Handle "Get Code" button action
-                      },
-                      child: const Text('Get Code'),
-                    ),
+                    const Text('Get Code'),
                   ],
                 ),
               ],
