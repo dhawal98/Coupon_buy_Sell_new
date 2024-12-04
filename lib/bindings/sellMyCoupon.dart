@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -49,8 +50,14 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
     };
 
     try {
+      final email = FirebaseAuth.instance.currentUser?.email!;
       // Store coupon in Firestore
       await FirebaseFirestore.instance.collection('market').add(couponData);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(email)
+          .collection('myCoupons')
+          .add(couponData);
 
       // Show confirmation message using SnackBar
       ScaffoldMessenger.of(context).showSnackBar(
