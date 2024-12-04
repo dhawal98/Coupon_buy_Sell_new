@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TSellMyCoupon extends StatefulWidget {
   const TSellMyCoupon({super.key});
@@ -15,6 +16,7 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
   final TextEditingController imageUrlController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
 
   bool isLoading = false;
 
@@ -40,7 +42,7 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
       'price': priceController.text,
       'link': imageUrlController.text, // Image URL field
       'Code': codeController.text,
-
+      'date': dateController.text,
       'description': descriptionController.text,
       'email': 'user@example.com', // Add user email if applicable
       'timestamp': FieldValue.serverTimestamp(),
@@ -147,6 +149,37 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
             ),
             const SizedBox(height: 10),
 
+            SizedBox(
+              width: double.infinity,
+              child: TextField(
+                controller: dateController,
+                decoration: const InputDecoration(
+                  labelText: 'Coupon Exp Date',
+                  hintText: 'DD-MM-YYYY',
+                ),
+                keyboardType: TextInputType.text, // Only numeric keyboard
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                      RegExp(r'\d|-')), // Allow digits and "-"
+                  LengthLimitingTextInputFormatter(
+                      10), // Limit to 10 characters
+                ],
+                onChanged: (value) {
+                  // Validate date format dynamically
+                  if (!_isValidDate(value)) {
+                    setState(() {
+                      // Invalid date formatting
+                      dateController.text = value;
+                      dateController.selection = TextSelection.fromPosition(
+                        TextPosition(offset: value.length),
+                      );
+                    });
+                  }
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
+
             // Image URL TextField
             SizedBox(
               width: double.infinity, // Ensure the text field takes full width
@@ -172,7 +205,8 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 70),
+            //const Spacer(),
 
             // Submit Button
             ElevatedButton(
@@ -181,7 +215,11 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
                   : null, // Disable if form is invalid or loading
               child: isLoading
                   ? const CircularProgressIndicator(color: Colors.white)
-                  : const Text('Submit Coupon'),
+                  : const Text(
+                      'Submit Coupon',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    ),
             ),
           ],
         ),
@@ -190,6 +228,13 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
   }
 }
 
+bool _isValidDate(String input) {
+  // Regex to validate DD-MM-YYYY format
+  final RegExp dateRegex = RegExp(
+    r'^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$',
+  );
+  return dateRegex.hasMatch(input);
+}
 
 
 // import 'package:cloud_firestore/cloud_firestore.dart';

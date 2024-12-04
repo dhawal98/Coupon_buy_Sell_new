@@ -1,10 +1,11 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coupon_app/bindings/sellMyCoupon.dart';
+import 'package:coupon_app/bindings/user_ki_profile.dart';
 import 'package:coupon_app/features/authentication/screens/Login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreenForHome extends StatefulWidget {
   const ProfileScreenForHome({super.key});
@@ -55,7 +56,12 @@ class _ProfileScreenForHomeState extends State<ProfileScreenForHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Center(
+            child: Text(
+          'Profile',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+        )),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -87,7 +93,7 @@ class _ProfileScreenForHomeState extends State<ProfileScreenForHome> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Get.to(() => YourOrdersScreen());
+                Get.to(() => const AboutUserProfile());
               },
               child: const Text('My Orders'),
             ),
@@ -101,7 +107,7 @@ class _ProfileScreenForHomeState extends State<ProfileScreenForHome> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Get.to(() => HelpSupportScreen());
+                Get.to(() => const HelpSupportScreen());
               },
               child: const Text('Help & Support'),
             ),
@@ -111,11 +117,14 @@ class _ProfileScreenForHomeState extends State<ProfileScreenForHome> {
               child: ElevatedButton(
                 onPressed: logout,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red.withOpacity(0.8),
+                  backgroundColor: Colors.red,
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 70, vertical: 22), // Center styling
+                      horizontal: 50, vertical: 22), // Center styling
                 ),
-                child: const Text('Logout'),
+                child: const Text(
+                  'Log-out',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             const Spacer(),
@@ -157,11 +166,106 @@ class _ProfileScreenForHomeState extends State<ProfileScreenForHome> {
     );
   }
 }
+// /
+// /
+// /
+// /
+// /
+// /
+// /
+// /
+// /
+// /
+// /
 
+// /
 class EditProfileScreenForHome {}
 
-class YourOrdersScreen {}
+// class YourOrdersScreen {}
 
 class TrackOrderScreen {}
 
-class HelpSupportScreen {}
+class HelpSupportScreen extends StatelessWidget {
+  final String email = "cs21b1005@iiitr.ac.in";
+  final String phone = "+917976451687";
+
+  const HelpSupportScreen({super.key});
+
+  // Function to launch email
+  void _launchEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    } else {
+      throw 'Could not launch $emailUri';
+    }
+  }
+
+  // Function to launch phone
+  void _launchPhone() async {
+    final Uri phoneUri = Uri(
+      scheme: 'tel',
+      path: phone,
+    );
+    if (await canLaunchUrl(phoneUri)) {
+      await launchUrl(phoneUri);
+    } else {
+      throw 'Could not launch $phoneUri';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Help :-',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.grey,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: _launchEmail,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.email, color: Colors.blue, size: 30),
+                  const SizedBox(width: 10),
+                  Text(
+                    email,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+
+            // Ab same for Mobile
+            GestureDetector(
+              onTap: _launchPhone,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.phone, color: Colors.green, size: 30),
+                  const SizedBox(width: 10),
+                  Text(
+                    phone,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
