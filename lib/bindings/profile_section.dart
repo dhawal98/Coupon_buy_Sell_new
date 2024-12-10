@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coupon_app/bindings/sellMyCoupon.dart';
+// import 'package:coupon_app/bindings/sellMyCoupon.dart';
+import 'package:coupon_app/bindings/sell_my_coupon.dart';
+// import 'package:coupon_app/bindings/sellmycoupon.dart';
 import 'package:coupon_app/bindings/user_ki_profile.dart';
 import 'package:coupon_app/features/authentication/screens/Login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +13,7 @@ class ProfileScreenForHome extends StatefulWidget {
   const ProfileScreenForHome({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProfileScreenForHomeState createState() => _ProfileScreenForHomeState();
 }
 
@@ -42,6 +45,7 @@ class _ProfileScreenForHomeState extends State<ProfileScreenForHome> {
           });
         }
       } catch (e) {
+        // ignore: avoid_print
         print("Error fetching Firestore data: $e");
       }
     }
@@ -102,7 +106,7 @@ class _ProfileScreenForHomeState extends State<ProfileScreenForHome> {
               onPressed: () {
                 Get.to(() => TrackOrderScreen());
               },
-              child: const Text('Track Orders'),
+              child: const Text('Track Orders  --not useful now'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(

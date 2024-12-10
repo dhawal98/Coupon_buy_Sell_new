@@ -1,3 +1,4 @@
+import 'package:coupon_app/bindings/selling_management.dart';
 import 'package:flutter/material.dart';
 
 class AboutUserProfile extends StatelessWidget {
@@ -23,14 +24,20 @@ class AboutUserProfile extends StatelessWidget {
             const SizedBox(height: 70), // thoda gap dene ke liye
             Center(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TSellManagementProfile()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   padding:
                       const EdgeInsets.symmetric(vertical: 25, horizontal: 65),
                   backgroundColor: Colors.blueGrey,
                 ),
                 child: const Text(
-                  'Buyed Coupon',
+                  'Selled Coupon',
                   style: TextStyle(fontSize: 18, color: Colors.amber),
                 ),
               ),
@@ -44,7 +51,7 @@ class AboutUserProfile extends StatelessWidget {
                 backgroundColor: Colors.green,
               ),
               child: const Text(
-                'Selled Coupon',
+                'Buyed Coupon',
                 style: TextStyle(fontSize: 18),
               ),
             ),

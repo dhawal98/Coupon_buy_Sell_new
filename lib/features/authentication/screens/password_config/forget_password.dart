@@ -17,19 +17,27 @@ class ForgetPassword extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Forget Password' , style: Theme.of(context).textTheme.headlineMedium),
-            const SizedBox( height: TSizes.spaceBtwItems),
-            Text('Do not worry sometimes people can forget too.Enter yout email and we will send you a password reset link' , style: Theme.of(context).textTheme.labelMedium),
-            const SizedBox( height: TSizes.spaceBtwSections*2),
-
+            Text('Forget Password',
+                style: Theme.of(context).textTheme.headlineMedium),
+            const SizedBox(height: TSizes.spaceBtwItems),
+            Text(
+                'Do not worry sometimes people can forget too.Enter yout email and we will send you a password reset link',
+                style: Theme.of(context).textTheme.labelMedium),
+            const SizedBox(height: TSizes.spaceBtwSections * 2),
             TextFormField(
-              decoration: const InputDecoration(labelText: 'E-mail'  , prefixIcon: Icon(Iconsax.direct_right)),
+              decoration: const InputDecoration(
+                  labelText: 'E-mail', prefixIcon: Icon(Iconsax.direct_right)),
             ),
-            const SizedBox( height: TSizes.spaceBtwSections),
-
-            SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () => Get.to(() => const ResetPassword()), child: const Text('Submit')),)
+            const SizedBox(height: TSizes.spaceBtwSections),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                  onPressed: () => Get.to(() => const ResetPassword()),
+                  child: const Text('Submit')),
+            )
           ],
-        ),),
+        ),
+      ),
     );
   }
 }

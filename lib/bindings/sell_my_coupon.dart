@@ -1,7 +1,12 @@
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:uuid/uuid.dart';
 
 class TSellMyCoupon extends StatefulWidget {
   const TSellMyCoupon({super.key});
@@ -51,13 +56,20 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
 
     try {
       final email = FirebaseAuth.instance.currentUser?.email!;
-      // Store coupon in Firestore
-      await FirebaseFirestore.instance.collection('market').add(couponData);
+      final String couponId =
+          const Uuid().v4(); // Generate a unique ID for the coupon
+
+      // Store coupon in Firestore with the same ID
+      await FirebaseFirestore.instance
+          .collection('market')
+          .doc(couponId)
+          .set(couponData);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(email)
           .collection('myCoupons')
-          .add(couponData);
+          .doc(couponId)
+          .set(couponData);
 
       // Show confirmation message using SnackBar
       ScaffoldMessenger.of(context).showSnackBar(
@@ -82,6 +94,40 @@ class _TSellMyCouponState extends State<TSellMyCoupon> {
       });
     }
   }
+
+  //   try {
+  //     final email = FirebaseAuth.instance.currentUser?.email!;
+  //     // Store coupon in Firestore
+  //     await FirebaseFirestore.instance.collection('market').add(couponData);
+  //     await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(email)
+  //         .collection('myCoupons')
+  //         .add(couponData);
+
+  //     // Show confirmation message using SnackBar
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Coupon Submitted Successfully')),
+  //     );
+
+  //     // Go back to the previous screen after a brief delay
+  //     Future.delayed(const Duration(seconds: 2), () {
+  //       Navigator.pop(context); // Go back to the previous screen
+  //     });
+
+  //     // Clear form fields
+  //     clearForm();
+  //   } catch (e) {
+  //     // Show error message
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Error while submitting: $e')),
+  //     );
+  //   } finally {
+  //     setState(() {
+  //       isLoading = false; // Hide loading indicator
+  //     });
+  //   }
+  // }
 
   void clearForm() {
     companyNameController.clear();

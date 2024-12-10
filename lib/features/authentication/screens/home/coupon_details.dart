@@ -7,6 +7,7 @@ class CouponDetailScreen extends StatefulWidget {
   const CouponDetailScreen({required this.coupon, super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CouponDetailScreenState createState() => _CouponDetailScreenState();
 }
 
@@ -131,10 +132,10 @@ class _CouponDetailScreenState extends State<CouponDetailScreen> {
             const Spacer(),
             ElevatedButton(
               onPressed: _openRazorpayCheckout,
-              child: const Text('Buy Now'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 50),
               ),
+              child: const Text('Buy Now'),
             ),
           ],
         ),
@@ -197,7 +198,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Amount Paid: \$${price}',
+                    'Amount Paid: \$$price',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -215,9 +216,9 @@ class PaymentSuccessScreen extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 16),
-                  Text(
+                  const Text(
                     'Coupon Code:',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,

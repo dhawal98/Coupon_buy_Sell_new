@@ -46,10 +46,15 @@ class StoreScreen extends StatelessWidget {
                       // search bar
                       const SizedBox(height: TSizes.spaceBtwItems),
                       const TSearchContainer(
-                          text: 'Search in store',
-                          showBorder: true,
-                          showBackground: false,
-                          padding: EdgeInsets.zero),
+                        text: 'Search in Store',
+                        showBackground: true,
+                        showBorder: true,
+                      ),
+                      // const TSearchContainer(
+                      //     text: 'Search in store',
+                      //     showBorder: true,
+                      //     showBackground: false,
+                      //     padding: EdgeInsets.zero),
                       const SizedBox(height: TSizes.spaceBtwSections),
 
                       /// feature brands

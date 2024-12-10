@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:coupon_app/common/widgets/sucess_screen/success_screen.dart';
 import 'package:coupon_app/features/authentication/screens/Login/login.dart';
 import 'package:coupon_app/features/authentication/screens/signup_widgets/term_and_condition_checkbox.dart';
